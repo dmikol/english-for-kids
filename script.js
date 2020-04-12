@@ -9,6 +9,19 @@ window.onload = () => {
 
     const iconMenu = document.createElement('div');
     iconMenu.classList.add('icon-menu');
+    iconMenu.addEventListener('click', clickHandler);
+    let num = 0;
+    function clickHandler(){
+        if(num == 0){
+            menu.style.transform = "translateX(250px)";
+            iconMenu.classList.add('check');
+            num = 1;
+        }else{
+            menu.style.transform = "translateX(-250px)";
+            iconMenu.classList.remove('check');
+            num = 0;
+        }
+    }
     header.append(iconMenu);
     const span = document.createElement('span');
     iconMenu.innerHTML = "<span></span><span></span><span></span>";
@@ -24,24 +37,27 @@ window.onload = () => {
         menu.append(link);
         if(i == 0){
             link.innerText = "Main Page";
+            link.classList.add('active');
+            link.href = "#/";
         }else{
             link.innerText = cards[0][i-1];
+            link.href = "#/cards"
         }   
     }
-
 
     const switchMenu = document.createElement('div');
     switchMenu.classList.add('switch-menu');
     header.append(switchMenu);
-
-
+    switchMenu.innerHTML = `<label class="switch">
+    <input type="checkbox">
+    <span class="slider"></span>
+  </label>`
 
 
     const content = document.createElement('div');
     content.classList.add('content');
 
     mainBlock.append(header, content);
-
     class AllCards {
         constructor(value) {
             this.value = value;
@@ -65,3 +81,6 @@ window.onload = () => {
 
     let allCards = new AllCards(cards);
 }
+
+
+
