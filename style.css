@@ -47,6 +47,7 @@ header{
     margin: 20px 25px;
     cursor: pointer;
     transition: .3s;
+    position: relative;
 }
 .card img{
     width: 140px;
@@ -56,11 +57,77 @@ header{
     object-fit: cover;
     margin: 30px auto;
 }
-.card:hover{
+.card-container{
+    perspective: 500px;
+}
+/* .card-container:hover .card-word{
+    transform: rotateY(180deg);
+    } */
+.card-word{
+    width: 300px;
+    height: 245px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    color: #212529;
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto;
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px 25px;
+    transition: .6s;
+    position: relative;
+    transform-style: preserve-3d;
+}
+.card-word p{
+    padding-top: 205px;
+    transform-style: preserve-3d;
+    font-size: 24px;
+}
+.rotate{
+    position: absolute;
+    width: 50px;
+    height: 46px;
+    background: url('img/rotate-off.png') no-repeat;
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center 16px;
+    bottom: 5px;
+    right: 5px;
+    transition: .3s;
+    filter: grayscale(1);
+    z-index: 3;
+}
+.rotate:hover{
+    background-size: 35px;
     cursor: pointer;
+}
+.card:hover{
     box-shadow: 0 7px 10px 5px rgba(0,0,0,.2);
 }
 
+.front, .back{
+    position: absolute;
+    height: 245px;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    transition: .6s;
+}
+.back{
+    transform: rotateY(180deg);
+}
+.front{
+    z-index: 2;
+}
+.back, .front, .rotate{
+    backface-visibility: hidden;
+}
 .icon-menu{
     display: block;
     width: 40px;
